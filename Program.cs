@@ -1,7 +1,11 @@
+using dotnet_mvc_todo_app;
+using dotnet_mvc_todo_app.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.RegisterServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -15,6 +19,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+await app.Services.InitializeDbAsync();
 
 app.UseRouting();
 
