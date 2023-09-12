@@ -4,8 +4,20 @@
     ViewData["Title"] = "Home Page";
 }
 
-<ol>
-@foreach (var todo in Model){
-	<li>@todo.Title : @todo.IsDone</li>
-}
-</ol>
+
+<div class="text-center">
+    <h1 class="display-4">All Todo List</h1>
+    <a  asp-area="" asp-controller="Todo" asp-action="New">Add New todo</a>
+		<ol class="mt-4">
+			@foreach (var todo in Model){
+				<li class="text-start">@todo.Title : 
+					@if (@todo.IsDone){
+						<span>Done</span>
+					} 
+					else {
+						<span>Not Done</span>
+					}
+				</li>
+			}
+		</ol>
+</div>

@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using dotnet_mvc_todo_app.Data;
-using dotnet_mvc_todo_app.Data.Migrations;
 using dotnet_mvc_todo_app.Models;
 using dotnet_mvc_todo_app.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +22,11 @@ namespace dotnet_mvc_todo_app.Controllers
             var Todos = await todoRepository.GetAllAsync();
             var todoList = Todos.Select(todo => todo.AsViewModel()).ToList();
             return View(todoList);
+        }
+
+        public IActionResult New()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

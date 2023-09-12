@@ -12,3 +12,10 @@ public class GroceryListConfiguration : IEntityTypeConfiguration<GroceryList>
             .HasPrecision(6, 2);
     }
 }
+public class TodoConfiguration : IEntityTypeConfiguration<Todo>
+{
+    public void Configure(EntityTypeBuilder<Todo> builder)
+    {
+        builder.Property(todo => todo.Id).HasDefaultValueSql("gen_random_uuid()");
+    }
+}

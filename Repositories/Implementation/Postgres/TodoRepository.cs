@@ -33,7 +33,7 @@ namespace dotnet_mvc_todo_app.Repositories.Implementation.Postgres
 
         public async Task<Todo> GetByIdAsync(string id)
         {
-            return await dbContext.Todos.FirstAsync(todo => todo.Id == id);
+            return await dbContext.Todos.FirstAsync(todo => todo.Id.ToString() == id);
         }
 
         public async Task UpdateAsync(Todo updatedtodo)
@@ -45,7 +45,7 @@ namespace dotnet_mvc_todo_app.Repositories.Implementation.Postgres
 
         public async Task DeleteAsync(string id)
         {
-            await dbContext.Todos.Where(todo => todo.Id == id).ExecuteDeleteAsync();
+            await dbContext.Todos.Where(todo => todo.Id.ToString() == id).ExecuteDeleteAsync();
         }
     }
 }
