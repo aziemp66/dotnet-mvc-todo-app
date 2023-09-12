@@ -7,7 +7,7 @@
 
 <div class="text-center">
     <h1 class="display-4">All Todo List</h1>
-    <a  asp-area="" asp-controller="Todo" asp-action="New">Add New todo</a>
+    <a  asp-area="" asp-controller="Todo" asp-action="Create">Add New todo</a>
 		<ol class="mt-4">
 			@foreach (var todo in Model){
 				<li class="text-start">@todo.Title : 

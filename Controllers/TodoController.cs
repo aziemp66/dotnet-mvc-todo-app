@@ -24,9 +24,21 @@ namespace dotnet_mvc_todo_app.Controllers
             return View(todoList);
         }
 
-        public IActionResult New()
+        public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TodoViewModel todo)
+        {
+            await todoRepository.CreateAsync(new Todo()
+            {
+                Title = todo.Title,
+                IsDone = todo.IsDone,
+            });
+
+            return RedirectToAction("Index", "Todo");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
