@@ -11,8 +11,8 @@ using dotnet_mvc_todo_app.Data;
 namespace dotnet_mvc_todo_app.Data.Migrations
 {
     [DbContext(typeof(TodoAppContext))]
-    [Migration("20230912041201_add_todo_table")]
-    partial class add_todo_table
+    [Migration("20230912072914_add_todo_table_and_grocery_list_table")]
+    partial class add_todo_table_and_grocery_list_table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,31 @@ namespace dotnet_mvc_todo_app.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dotnet_mvc_todo_app.Models.Todo", b =>
+            modelBuilder.Entity("dotnet_mvc_todo_app.Models.GroceryList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(6, 2)
+                        .HasColumnType("numeric(6,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GroceryLists");
+                });
+
+            modelBuilder.Entity("dotnet_mvc_todo_app.Models.Todo", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDone")
                         .HasColumnType("boolean");

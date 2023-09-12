@@ -9,9 +9,9 @@ namespace dotnet_mvc_todo_app.Repositories.Contracts
     public interface ITodoRepository
     {
         Task<IEnumerable<Todo>> GetAllAsync();
-        Task<Todo> GetByIdAsync(int id);
+        Task<Todo> GetByIdAsync(string id);
         Task CreateAsync(Todo todo);
         Task UpdateAsync(Todo updatedtodo);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
     }
 }

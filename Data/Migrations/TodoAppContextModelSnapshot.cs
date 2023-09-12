@@ -44,11 +44,8 @@ namespace dotnet_mvc_todo_app.Data.Migrations
 
             modelBuilder.Entity("dotnet_mvc_todo_app.Models.Todo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDone")
                         .HasColumnType("boolean");

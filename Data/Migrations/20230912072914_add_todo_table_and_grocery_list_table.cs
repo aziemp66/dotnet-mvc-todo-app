@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace dotnet_mvc_todo_app.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class add_grocery_list_table : Migration
+    public partial class add_todo_table_and_grocery_list_table : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,19 @@ namespace dotnet_mvc_todo_app.Data.Migrations
                 {
                     table.PrimaryKey("PK_GroceryLists", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Todos",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    IsDone = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Todos", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -31,6 +44,9 @@ namespace dotnet_mvc_todo_app.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "GroceryLists");
+
+            migrationBuilder.DropTable(
+                name: "Todos");
         }
     }
 }

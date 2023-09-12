@@ -1,0 +1,11 @@
+
+@model List<dotnet_mvc_todo_app.Models.TodoViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ol>
+@foreach (var todo in Model){
+	<li>@todo.Title : @todo.IsDone</li>
+}
+</ol>
