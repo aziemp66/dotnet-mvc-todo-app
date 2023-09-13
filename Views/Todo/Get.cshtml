@@ -1,0 +1,16 @@
+@model dotnet_mvc_todo_app.Models.TodoViewModel
+@{
+    ViewData["Title"] = "Todo";
+}
+
+
+<div>
+    <p>Title : @Model.Title</p>
+    <p>Status : @if (@Model.IsDone)
+        { <span>Done</span> 
+        }
+        else {
+            <span>Not Done</span>
+        }
+        </p>
+</div>

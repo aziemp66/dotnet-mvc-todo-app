@@ -10,13 +10,15 @@
     <a  asp-area="" asp-controller="Todo" asp-action="Create">Add New todo</a>
 		<ol class="mt-4">
 			@foreach (var todo in Model){
-				<li class="text-start">@todo.Title : 
+				<li class="text-start"><a asp-controller="Todo" asp-action="Get" asp-route-id="@todo.Id" >
+					@todo.Title : 
 					@if (@todo.IsDone){
 						<span>Done</span>
 					} 
 					else {
 						<span>Not Done</span>
 					}
+				</a>
 				</li>
 			}
 		</ol>

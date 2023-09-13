@@ -24,6 +24,12 @@ namespace dotnet_mvc_todo_app.Controllers
             return View(todoList);
         }
 
+        public async Task<IActionResult> Get(string id)
+        {
+            var todo = await todoRepository.GetByIdAsync(id);
+            return View(todo.AsViewModel());
+        }
+
         public IActionResult Create()
         {
             return View();
