@@ -1,0 +1,24 @@
+@model dotnet_mvc_todo_app.Models.TodoViewModel
+@{
+    ViewData["Title"] = "Add New Todo";
+}
+
+<div >
+    <h1 class="text-black text-center">Update Todo</h1>
+    <form asp-controller="Todo" asp-action="Update" method="post">
+		<input value="@Model.Id" type="hidden" asp-for="Id" />
+
+		<div class="mt-3 form-group">
+            <label asp-for="Title" class="font-weight-bold">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mt-3 form-check ">
+            <input asp-for="IsDone" class="form-check-input" />
+            <label asp-for="IsDone" class="form-check-label">Is Done</label>
+        </div>
+
+		<button type="submit" class="btn btn-primary mt-3">Save</button>
+	</form>
+</div>

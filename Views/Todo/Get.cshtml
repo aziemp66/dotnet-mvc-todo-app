@@ -12,5 +12,8 @@
         else {
             <span>Not Done</span>
         }
-        </p>
+    </p>
+    <div>
+        <a asp-action="Update" asp-controller="Todo" asp-route-id="@Model.Id" >Update</a>
+    </div>
 </div>

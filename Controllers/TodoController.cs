@@ -17,6 +17,7 @@ namespace dotnet_mvc_todo_app.Controllers
             this.todoRepository = todoRepository;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var Todos = await todoRepository.GetAllAsync();
@@ -24,6 +25,7 @@ namespace dotnet_mvc_todo_app.Controllers
             return View(todoList);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get(string id)
         {
             var todo = await todoRepository.GetByIdAsync(id);
@@ -41,10 +43,34 @@ namespace dotnet_mvc_todo_app.Controllers
             await todoRepository.CreateAsync(new Todo()
             {
                 Title = todo.Title,
-                IsDone = todo.IsDone,
+                IsDone = todo.IsDone
             });
 
             return RedirectToAction("Index", "Todo");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string id)
+        {
+            var todo = await todoRepository.GetByIdAsync(id);
+
+            return View(todo.AsViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(TodoViewModel todoViewModel)
+        {
+            var todo = await todoRepository.GetByIdAsync(todoViewModel.Id);
+
+            todo.Title = todoViewModel.Title;
+            todo.IsDone = todoViewModel.IsDone;
+
+            await todoRepository.UpdateAsync(todo);
+
+            return RedirectToAction("Get", "Todo", new
+            {
+                id = todoViewModel.Id
+            });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
