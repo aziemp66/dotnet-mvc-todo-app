@@ -73,6 +73,14 @@ namespace dotnet_mvc_todo_app.Controllers
             });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await todoRepository.DeleteAsync(id);
+
+            return RedirectToAction("Index", "Todo");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
